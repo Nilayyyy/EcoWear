@@ -1,0 +1,61 @@
+// allprojects {
+//     repositories {
+//         google()
+//         mavenCentral()
+//     }
+// }
+
+// rootProject.buildDir = "../build"
+// subprojects {
+//     project.buildDir = "${rootProject.buildDir}/${project.name}"
+// }
+// subprojects {
+//     project.evaluationDependsOn(":app")
+// }
+
+// tasks.register("clean", Delete) {
+//     delete rootProject.buildDir
+// }
+
+// buildscript {
+//     dependencies {
+//         classpath 'com.google.gms:google-services'
+//     }
+// }
+
+buildscript {
+    ext.kotlin_version = '1.7.10' // Update to match your project requirements
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.2.1' // Update based on your version
+        classpath 'com.google.gms:google-services:4.3.13' // Firebase plugin
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
+        // // Add the dependencies for the App Check libraries
+        // // When using the BoM, you don't specify versions in Firebase library dependencies
+        // implementation("com.google.firebase:firebase-appcheck-debug")
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.buildDir = "../build"
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(":app")
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
+
